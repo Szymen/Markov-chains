@@ -1,0 +1,87 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\setlength{\parindent}{1cm}
+
+\title{Projekt JiMP 2\\\textbf{Automatyczna generacja tekstu}}
+\author{Szymon Maslowski }
+\date{Semestr letni 2015}
+\begin{document}
+
+\maketitle
+
+\section*{Specyfikacja funkcjonalna programu Markov}
+
+\subsection*{Nazwa}
+
+\textbf{markov} - program generujący tekst losowy na podstawie zadanego tekstu/tekstów -- interfejs linii poleceń\\
+
+
+\textit{Przykładowe użycie} :
+
+\$ markow 2 tekst1.txt text2.txt 130 wynik.out 
+
+\$ markow test2 200 4 -S statystyki.out
+	
+
+\subsection*{Streszczenie}
+\par markov [-d](opcjonalne) nazwa\_pliku\_z\_bazą\_ przejsc n \{nazwy plików wejsciowych\} -długość\_tekstu\_wyjściowego  -(opcjonalna)ilość\_akapitów -plik\ wynikowy  -(opcjonalna)długość\_n-gramu  [-S]{-S statystyki}-(opcjonalna)nazwa\_pliku [-c](opcjonalne) nazwa\_pliku\_do\_zapisu\_bazy\_przejść
+	
+\subsection*{Opis}
+\par Markov to program generujący, na podstawie analizy tesktów, losowe ciągi słów w języku naturalnym. \\
+		
+		\textbf{-n}\\
+		
+			Ilość plików wejściowych zawierających tekst, domyślnie 1.\\
+		
+		\textbf{-d  nazwa\_pliku\_z\_bazą\_przejsc}\\
+		
+		    Możliwe jest wywołanie programu podając gotową już bazę przejść, stworzoną przy poprzednich wywołaniach programu.\\
+		
+		\textbf{-nazwy plików wejściowych}\\
+		
+		    N plików wejściowych binarnego tekstu, zawierających tekst w języku naturalnym, na podstawie, których zostanie wygenerowany tekst wyjściowy\\
+		
+		\textbf{-długość tekstu wyjściowego}\\
+		
+			Docelowa długość wygenerowanego tekstu. Margines błędu ~5 \%\\
+		
+		\textbf{-ilość akapitów}\\
+		
+			Ilość akapitów, które ma mieć tekst, objętość akapitów będzie taka sama z niepewnością ~5\%. Domyślnie 1 akapit\\
+		
+		\textbf{-plik wynikowy} \\
+		
+			Nazwa pliku, do którego zostanie zapisany efekt działania programu. Jeżeli nie podano program wypisze wynik do konsoli\\
+		
+		\textbf{-długość n-gramu}\\
+		
+			Długość n-gramu na podstawie, którego budowane są zależności w słowach tekstu. Domyślnie 3\\
+			
+		\textbf{-S statystyki}\\
+		
+			Jeżeli wybrano program z tym parametrem, to oprócz normalnego wygenerowania tekstu losowego, program wypisze też do zadanego pliku(jeżeli nie podano to wypisze do konsoli) statystyki dotyczące najczęściej wykorzystywanych słów, najczęsciej powtarzających się n-gramów, PMI(różnica między oczekiwaną częstotliwością występowania ciągów słów, a oczekiwaną) \\
+			
+			\textbf{-c nazwa\_pliku\_do\_zapisu\_bazy\_przejść}\\
+			
+			Możliwe jest zachowanie bazy możliwych przejść w pliku o podanej nazwie. Zawartość zostanie nadpisana! W celu tylko zwiększenia istniejącej bazy należy wywołać program podając teksty wejściowe i bazę danych,tekst wyjściowy długości 0 i wybrać ten parametr. 
+			
+
+\subsection*{Błędy w użyciu}
+
+W razie wystąpienia błędów, komunikat zostanie wypisany do pliku "markov\_errs" i na strumień błędów. Program stara się wygenerować tekst bez błędów, dlatego w razie wystąpienia nie właściwych parametrów wejściowych, stosowna informacja zostanie wydrukowana na standardowy strumień błędów a program spróbuje działać dalej przyjmując wartości domyślne.\\
+Np.:
+
+\$ markow 2 130 wynik.out\\
+makrov:  blad! nie podano plikow wejsciowych!\\
+
+\$ markow 2 tekst1.in tekst2.in -130 wynik.out\\
+markov: blad! ilosc tekstu nie moze byc ujemna!\\
+
+\subsection*{Inne}
+Kontakt : szymmaslowski@gmail.com\\
+\begin{center}
+Wykonane jako praca zaliczeniowa na projekt z JiMP2.\\Politechnika Warszawska 2015.
+\end{center}
+
+
+\end{document}
