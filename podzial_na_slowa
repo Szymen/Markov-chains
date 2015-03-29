@@ -1,0 +1,22 @@
+
+ik=fopen("dane1.txt","r");
+
+   while(fgets(tab,1024,plik)!=NULL)
+   {
+   printf("\n");
+   printf("%s",tab);
+              pch=strtok(tab," ");
+              while(pch!=NULL)
+              {
+                              printf("%s",pch);
+                              printf("\t");
+                              for(i=0;pch[i]!=0;i++)
+                              {
+                                        printf("%d ",pch[i]);            }
+
+                              printf("\n");
+                              pch=strtok(NULL," ");
+                              }
+
+                              }
+nt a;
