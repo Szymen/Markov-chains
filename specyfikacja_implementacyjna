@@ -1,0 +1,83 @@
+Masłowski Szymon 271070 Gr2 JiMP2 Projekt
+
+Specyfikacja implementacyjna programu realizującego algorytm łańcuchów Markova:
+
+­Język C standard ANSI;
+
+­Używane biblioteki:
+
+• stdlib.h
+
+• stdio.h
+
+• string.h
+
+• math.h,
+
+• time.h
+
+Moduły :
+
+1. assoc_tab:
+
+• void push(int has_val, char *word) // dodaje do tablicy przejsc
+
+• char* get_by_hash(int hash_val, int number) //zwraca słowo na pozycji number w
+
+tablicy przejść, jeżeli nie ma takiego to zwraca pusty c­string.
+
+2. hash:
+
+• int hash(char *word[], int amount) zwraca wartosc haszu dla zadanej ilosci slow
+
+1. 3. linked_list:
+
+• push (char *data) //podaje na koniec listy podane slowo
+
+4.stats:
+
+• void read_from_file(FILE *in)
+
+• void write_to_file(FILE *out)
+
+• void count_frequency(*assoc_tab)
+
+Stuktury:
+
+1. assoc_tab{
+
+int size;
+
+linked_list *possibilities;
+
+2. };
+
+3. linked_list{
+
+node* next;
+
+char *word;
+
+4. }
+
+5. stat_help{
+
+char* origin;
+
+int count;
+
+6. }
+
+Ogólny opis:
+
+Program wczytując dane z plików wyliczać będzie wartości haszy na podstawie, których będzie
+
+odwoływał się do tablicy struktur assoc_tab, w której będzie ilość możliwości i możliwości
+
+następników, przetrzymywane w liście liniowej. Podczas generowania tekstu będzie przeliczany
+
+będzie „aktualny hasz” i na tej podstawie losowane jest słowo z tablicy możliwości.
+
+Przy tworzeniu statystyk zliczone zostaną wystąpienia przez zliczanie(indeksowanie po
+
+wartościach haszy), następnie odpowiednio przeliczone i zestawione.
