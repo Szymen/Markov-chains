@@ -5,7 +5,7 @@
 
 
 
-void push(char *data,node* last){
+void list_push(char *data,node* first){
 	node *temp;
 	temp= malloc(sizeof(node));
 	if(temp==NULL){
@@ -14,7 +14,12 @@ void push(char *data,node* last){
 		fclose("errors.log");
 	}
 	strcpy(temp->word,data);
-	last->next=temp;
+	
+	while(first->next!=null){
+		first=first->next;
+		}
+	
+	first->next=temp;
 
 
 }
