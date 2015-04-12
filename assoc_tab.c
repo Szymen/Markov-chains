@@ -7,18 +7,15 @@
 
 
 
-void push(assoc_tab* where, char *word){
+void assoc_push(assoc_tab* where, char *word){
 	
 	where->size++;
-	push(word, )// tu skonczylem
-
-
-
+	list_push(word,where->possible);
 }
 
 
 char* get_by_hash(int hash_val, int number);
 
+void make_trans_from_file(FILE *in, assoc_tab *where,int assoc_tab_size ){};
 
-
-void make_trans_from_file(FILE *in, assoc_tab *where,int assoc_tab_size );
+void write_trans_to_file(FILE *out, assoc_tab * from, int assoc_tab_size){};
