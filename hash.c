@@ -1,4 +1,4 @@
-
+#include "hash.h"
 
 int hash_val(char *words[], int word_amount){
 

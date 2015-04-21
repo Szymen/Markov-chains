@@ -1,6 +1,5 @@
 typedef struct node{
 	struct node *next;
-
 	char *word;
 }node;
 
