@@ -6,9 +6,9 @@
 
 
 
-void list_push(char *data,struct node* first){
-	struct node* temp;
-	temp= malloc(sizeof(struct node));
+void list_push(char *data,node* first){
+	node* temp;
+	temp= malloc(sizeof(node));
 	if(temp==NULL){
 		FILE *err=fopen("errors.log","a");	/*bedzie dopisywac do pliku*/
 		fprintf(err,"Couldn`t push sufix. Memory error.\n");

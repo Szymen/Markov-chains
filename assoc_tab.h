@@ -1,8 +1,10 @@
 #include "linked_list.h"
+#include <stdio.h>
 
-struct typedef{
+
+typedef struct{
 	int size; /*ile jest nastepnikow*/
-	linked_list *possible; /*nastepniki */
+	node* possible; /*nastepniki */
 }assoc_tab;
 
 void make_trans_from_file(FILE *in, assoc_tab *where,int assoc_tab_size ); /*tworzy tablice przejsc na podstawie pliku*/

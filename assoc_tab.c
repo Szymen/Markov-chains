@@ -1,18 +1,13 @@
-#include<stdio.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdio.h>
 #include "linked_list.h"
 #include "assoc_tab.h"
-
-
-
-
-
-
 void assoc_push(assoc_tab* where, char *word){
 	
 	where->size++;
 	list_push(word,where->possible);
 }
-
 
 char* get_by_hash(int hash_val, int number){return "lul";};
 

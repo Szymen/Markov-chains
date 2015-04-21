@@ -1,5 +1,5 @@
-markov: link.o hash.o assoc.o
-	cc link.o hash.o assoc.o -ansi -Wall -pedantic -o markov 
+markov: link.o hash.o assoc.o main.c
+	cc link.o hash.o assoc.o main.c -ansi -Wall -pedantic -o markov 
 
 assoc.o: assoc_tab.c
 	cc -c assoc_tab.c -ansi -Wall -pedantic -o assoc.o
