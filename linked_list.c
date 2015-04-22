@@ -7,8 +7,10 @@
 
 
 void list_push(char *data,node* first){
+    printf("W link push dodaje : %s\n",data);
     while(first->next!=NULL){  // przewijamy do ostatniego
 		first=first->next;
+        printf("Przewin\n");
 		}
     first->next=malloc(sizeof(node)); // tworzymy nowy wezel
     if(first->next==NULL){
