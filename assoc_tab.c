@@ -8,14 +8,15 @@
 void assoc_push(assoc_tab* where, char *word){
     if(where->possible==NULL){where->possible=malloc(sizeof(node));}
 	where->size++;
-	printf("dodalem nowy! size: %d word: %s\n",where->size,word);
+//	printf("dodalem nowy! size: %d word: %s\n",where->size,word);
 	list_push(word,where->possible);
 }
 
 char* get_word_by_id(node* first,int number){
+    number--;
     while(number--){
         first=first->next;
-        if(first==NULL){return "";}
+        if(first==NULL){return "dupa";}
     }
     return first->word;
 }
@@ -25,8 +26,8 @@ char* get_word_by_id(node* first,int number){
 void make_trans_from_file(char* out_file, assoc_tab *where[]){
     int size,assoc_size,i,j;
     char *tmp;
+    int k;
     tmp=malloc(sizeof(char)*100);
-
     int dud;
     FILE *in=fopen(out_file,"r");
     fscanf(in,"%d",&assoc_size);
@@ -37,7 +38,6 @@ void make_trans_from_file(char* out_file, assoc_tab *where[]){
             fscanf(in,"%s ",tmp);
 //            printf("Dodaje : %s\n",tmp);
             assoc_push(where[i],tmp); /*TODO cos nie dziala : ( ostatni wrzucony zaslania reszte : /  */
-            strcpy(tmp, "");
         }
     }
     fclose(in);
@@ -62,3 +62,16 @@ printf("write!\n");
     }
     fclose(out);
 }
+
+
+void assoc_initialize(assoc_tab *what[],int t_width){
+    int i;
+    for(i=0;i<t_width;i++){
+        what[i]=malloc(sizeof(node));
+    }
+
+}
+
+
+
+

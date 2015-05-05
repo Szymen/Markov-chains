@@ -7,19 +7,20 @@
 
 
 void list_push(char *data,node* first){
-    printf("W link push dodaje : %s\n",data);
+//    printf("List_push!\n");
     while(first->next!=NULL){  // przewijamy do ostatniego
 		first=first->next;
-        printf("Przewin\n");
+//        printf("a");
 		}
     first->next=malloc(sizeof(node)); // tworzymy nowy wezel
+
     if(first->next==NULL){
         FILE *err=fopen("errors.log","a");	/*bedzie dopisywac do pliku*/
 		fprintf(err,"Couldn`t push sufix. Memory error.\n");
 		fclose(err);
 		return ; // konczymy dzialanie funkcji
     };
-    if(first->word==NULL){
-    first->word=data;}
+    if(first->word==NULL){first->word=data;}
     else {first->next->word=data;}
+//    printf("Koniec List_pusha\n");
 }

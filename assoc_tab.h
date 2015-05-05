@@ -15,5 +15,5 @@ char* get_word_by_id(node* first,int number);
 
 void assoc_push(assoc_tab* where, char *word); /*dodaje do tablicy przejsc pod wart. hash*/
 
-char* get_by_hash(int hash_val, int number); /*zwraca slowo na pozycji number z tablicy przejsc, jezeli nie istnieje podaje pusty string */
+
 

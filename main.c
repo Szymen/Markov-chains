@@ -1,13 +1,12 @@
 #include<stdio.h>
 #include<stdlib.h>
-
+#include "text.h"
 #include "hash.h"
 /*#include "linked_list.h" zainkludowane w assoc_tab ^-^  */
-#include "assoc_tab.h"
+/*#include "assoc_tab.h"  jest w text.h */
 
 int main()
 {
-    int i;
     /*node* lista;
     char* test="Foo";
     char* test2="Bar";
@@ -26,6 +25,7 @@ int main()
         lista=lista->next;
     }
     */
+    /*
     char* test="Foo";
     char* test2="Bar";
     char* test3="Baz";
@@ -53,8 +53,65 @@ int main()
   for(i=0;i<12;i++){
         printf("tab3[%d]->size = %d\n",i,tab3[i]->size);
     }
+*/
+/*
+
+    assoc_tab *tab3[12];
+    for(i=0;i<12;i++){tab3[i]=malloc(sizeof(assoc_tab));}
+    assoc_push(tab3[2],test);
+    assoc_push(tab3[2],test2);
+    assoc_push(tab3[2],test);
+    assoc_push(tab3[2],test);
+    for(i=0;i<tab3[2]->size;i++)printf("W tab3[2] slowo nr : %d to : %s\n",i,get_word_by_id(tab3[2]->possible,i));
+*/
+
+   /* for(i=0;i<10;i++){
+        printf("Tab[%d] size : %d , possibilities ",i,tab[i]->size);
+        if(tab[i]->possible==NULL){
+            printf("(null)\n");
+        }
+        else printf("cos jest\n");
+    }*/
+   /* for(j=0;j<4;j++){for(i=0;i<100000;i++){
+        assoc_push(tab[i],test);
+    }}
+    */
+   // write_trans_to_file("duzo.txt",tab,100000);
+/*
+        for(i=0;i<10;i++){
+        printf("Tab[%d] size : %d , possibilities ",i,tab[i]->size);
+        if(tab[i]->possible==NULL){
+            printf("(null)\n");
+        }
+        else printf("cos jest\n");
+    }
+    make_trans_from_file("duzo.txt",tab);
+    for(i=0;i<10;i++){
+        printf("Tab[%d] size : %d , possibilities ",i,tab[i]->size);
+        if(tab[i]->possible==NULL){
+            printf("(null)\n");
+        }
+        else printf("cos jest\n");
+    }
+    */
 
 
-printf("Main !\n");
+    int i,j;
+
+    int TAB_SIZE=100009;
+    assoc_tab *tab[TAB_SIZE];
+    assoc_initialize(tab,TAB_SIZE);
+
+    int licznik1=0;
+    int licznik=0;
+    process_text("odyseja.txt",tab,3);
+    for(i=0;i<100009;i++){
+        if(tab[i]->size==1){licznik1+=1;}
+        //printf("%d. ilosc nastepnikow : %d\n",i,tab[i]->size);}
+        if(tab[i]->size>0){licznik++;}
+    }
+    printf("Ogolem niezerowych : %d, w tym pojedynczych : %d, czyli reszty zostaje : %d\n",licznik, licznik1, licznik-licznik1);
+    generate("dupa.txt",tab,TAB_SIZE,3,10);
+
 return 0;
 }

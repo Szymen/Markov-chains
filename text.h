@@ -6,9 +6,9 @@
 
 
 
-assoc_tab* process_text(FILE *in);  /*wczytuje z pliku tekstowego tekst i tworzy z niego tablicę przejść */
+void process_text(char* in,assoc_tab* tab[],int grams);  /*wczytuje z pliku tekstowego tekst i tworzy z niego tablicę przejść */
 /*zwraca wskaźnik na tablicę przejsc */
 
-void generate(FILE *out, assoc_tab* tab, int dlugosc); /*generuje tekst o podanej dlugosci*/
+void generate(char* out, assoc_tab* tab[],int hash_size,int grams, int dlugosc); /*generuje tekst o podanej dlugosci*/
 
 		/*TODO dodac obsluge reszty argumentow */
