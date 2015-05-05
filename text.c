@@ -4,37 +4,35 @@
 #include "hash.h"
 #include<time.h>
 
-void process_text(char* in_name,assoc_tab* tab[],int grams){
+int process_text(char* in_name,assoc_tab* tab[],int grams){
 
-//    printf("Wykorzystujemy %d-gramy\n",grams);
-    int i;
-    char **words;
-    words=malloc(sizeof(char)*grams*40);           /*tu tworzymy szerokosc tablicy */
-    for(i=0;i<grams;i++){                       /*a tu konkretne komorki na slowa  */
-        words[i]=malloc(sizeof(char)*40); /*maksymalnie 40 znakowe słowa ^-^  */
-    }
-    char* tmp;
-    tmp=malloc(sizeof(char)*40);
-//    printf("Zadano z pliku : %s\n",in_name);
     FILE *in=fopen(in_name,"r");
-    if(in==NULL){
-        printf("Couldn`t open file to process.\n");
-        return; /*skoncz dzialanie*/
-    }
-    while(fscanf(in,"%s",tmp)!=EOF){
-//        printf("Wczytano : %s\n",tmp);
-    strcpy(words[grams-1],tmp);
+    if(in==NULL){printf("Couldn`t open file to process.\nGood luck next time!\n"); return; }
+    int i,first_hash;
+    char **tmp=malloc(sizeof(char)*(grams+1));
 
-//        for(i=0;i<grams;i++){
-//          printf("words[%d]= \"%s\" ",i,words[i]);
-//       }
-        assoc_push(tab[hash_val(words,grams)],tmp);/* <---------------------------- hash!*/
-        for(i=0;i<grams-1;i++){     // przepisujemy
-            strcpy(words[i],words[i+1]);
-        }
-//        printf("\n\n");
+    for(i=0;i<=grams;i++){
+        tmp[i]=malloc(sizeof(char)*50);
     }
-    fclose(in);
+
+    for(i=0;i<=grams;i++){ /*generowanie pierwszego hasha*/
+        fscanf(in,"%s",tmp[i]); /*wczytuje gram+1 slow */
+    }
+
+    first_hash=hash_val(tmp,grams);         /*wyliczenie wartosci pierwszego i przesuniecie slow- przygotwanie do wczytania kolejnego */
+    assoc_push(tab[first_hash],tmp[grams]);
+    for(i=1;i<=grams;i++){
+            strcpy(tmp[i-1],tmp[i]);
+        }
+
+    while(fscanf(in,"%s",tmp[grams])!=EOF)
+    {
+            assoc_push(tab[hash_val(tmp,grams)],tmp[grams]);                            /*wrzucanie do tablicy przejsc */
+                for(i=1;i<=grams;i++){
+            strcpy(tmp[i-1],tmp[i]);
+        }
+    }
+    return first_hash;
 }
 
 void generate_text(char* out, assoc_tab* tab[], int hash_size,int grams,int dlugosc){

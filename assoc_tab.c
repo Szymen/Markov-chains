@@ -14,7 +14,7 @@ void assoc_push(assoc_tab* where, char *word){
 }
 
 char* get_word_by_id(node* first,int number){
-    if(first==NULL || number <= 0){return "";}
+    if(first==NULL){return "";}
     number--;
     while(number--){
         first=first->next;
