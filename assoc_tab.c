@@ -6,17 +6,19 @@
 
 
 void assoc_push(assoc_tab* where, char *word){
+
     if(where->possible==NULL){where->possible=malloc(sizeof(node));}
 	where->size++;
-//	printf("dodalem nowy! size: %d word: %s\n",where->size,word);
 	list_push(word,where->possible);
+
 }
 
 char* get_word_by_id(node* first,int number){
+    if(first==NULL || number <= 0){return "";}
     number--;
     while(number--){
         first=first->next;
-        if(first==NULL){return "dupa";}
+        if(first==NULL){return "\(null\)";}
     }
     return first->word;
 }

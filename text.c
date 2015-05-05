@@ -37,7 +37,7 @@ void process_text(char* in_name,assoc_tab* tab[],int grams){
     fclose(in);
 }
 
-void generate(char* out, assoc_tab* tab[], int hash_size,int grams,int dlugosc){
+void generate_text(char* out, assoc_tab* tab[], int hash_size,int grams,int dlugosc){
 
     int i;
     int act_size=0;
