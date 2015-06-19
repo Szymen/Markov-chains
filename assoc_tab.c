@@ -39,7 +39,7 @@ char *get_word_random(assoc_tab *tab[],int hash){
         //printf("%s ", pom->word);
       //  pom=pom->next;
     //}
-    /*printf("\nWyrandowany indeks to : %d\n",wyrandowany);*/
+    //printf("\nWyrandowany indeks to : %d\n",wyrandowany);
     pom = tab[hash]->possible;
     while(wyrandowany--){
         pom = pom->next;

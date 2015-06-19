@@ -5,15 +5,17 @@
 /*#include "linked_list.h" zainkludowane w assoc_tab ^-^  */
 /*#include "assoc_tab.h"  jest w text.h */
 
-int main()
+int main(int argc, char* argv[]) // stopien n-gramu , nazwa pliku wejsciowego, nazwa pliku wyjsciowego, dlugosc tekstu
 {
+    //if (argc < 4){printf("Zle podane parametry!\n"); return 1;}
     int TAB_SIZE = 1000009;
+    //int GRAMS = atoi(argv[4]);
     int GRAMS = 3;
-    int first_hash;
     assoc_tab *tab[TAB_SIZE];
     assoc_initialize(tab,TAB_SIZE);
-    process_text("Iliada.txt",tab,GRAMS);
-    process_text("calineczka.txt",tab,GRAMS);
+//    process_text("Iliada.txt",tab,GRAMS);
+//    process_text("calineczka.txt",tab,GRAMS);
+    process_text("Molier_don_Juan.txt",tab,GRAMS);
     /*int i=0;
     for( i = 0; i<TAB_SIZE;i++){
         if(tab[i]->size>0){
