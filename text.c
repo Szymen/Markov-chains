@@ -4,89 +4,58 @@
 #include "hash.h"
 #include<time.h>
 
-int process_text(char* in_name,assoc_tab* tab[],int grams){
+void process_text(char* in_name,assoc_tab* tab[],int grams){
 
     FILE *in=fopen(in_name,"r");
-    if(in==NULL){printf("Couldn`t open file to process.\nGood luck next time!\n"); return; }
+    if(in==NULL){printf("Couldn`t open file to process.\nGood luck next time!\n"); return -1; } //nie udalo sie otworzyc pliku
+
     int i,first_hash;
     char **tmp=malloc(sizeof(char)*(grams+1));
 
     for(i=0;i<=grams;i++){
         tmp[i]=malloc(sizeof(char)*50);
-    }
+    }                                   // inicjowanie zmiennych
 
-    for(i=0;i<=grams;i++){ /*generowanie pierwszego hasha*/
-        fscanf(in,"%s",tmp[i]); /*wczytuje gram+1 slow */
-    }
-
-    first_hash=hash_val(tmp,grams);         /*wyliczenie wartosci pierwszego i przesuniecie slow- przygotwanie do wczytania kolejnego */
-    assoc_push(tab[first_hash],tmp[grams]);
-    for(i=1;i<=grams;i++){
-            strcpy(tmp[i-1],tmp[i]);
-        }
+    fscanf(in,"%s",tmp[grams-1]);   //wczytujemy pierwsze słowo
+    assoc_push(tab[0],tmp[grams-1]);    //wrzucamy to słowo pod indeksem 0 - od tego zaczniemy generowanie
 
     while(fscanf(in,"%s",tmp[grams])!=EOF)
     {
-            assoc_push(tab[hash_val(tmp,grams)],tmp[grams]);                            /*wrzucanie do tablicy przejsc */
-                for(i=1;i<=grams;i++){
-            strcpy(tmp[i-1],tmp[i]);
-        }
+            assoc_push(tab[hash_val(tmp,grams)],tmp[grams]); /*wrzucanie do tablicy przejsc */
+            //printf("Wrzucono slowo : %s pod indeks : %d\n",tmp[grams],hash_val(tmp,grams));
+
+            for(i=1;i<=grams;i++){ strcpy(tmp[i-1],tmp[i]); } // przesuwanie slow, robienie miejsce na kolejne
     }
-    return first_hash;
 }
 
-void generate_text(char* out, assoc_tab* tab[], int hash_size,int grams,int dlugosc){
 
+void generate_text(char* out, assoc_tab* tab[],int grams,int docelowa_dlugosc){
+
+    int akt_dl = 0;
     int i;
-    int act_size=0;
-    int hash;
-    int numerek;
+    int akt_hash = 0;
+    char **klucz = malloc (sizeof (char) * grams);
+    for(i =0;i<grams;i++){
+        klucz[i] = malloc (sizeof (char) * 50);
+    }
+    FILE*out_file = fopen (out,"wr");
+                                    // pod indeksem 0 znajduje sie pierwsze slowo z tekstu.
+    klucz[grams-1] = get_word_random(tab,0);
 
-    char *word;
-    word=malloc(sizeof(char)*50);
-    char* act_hash_word[grams];
-    for(i=0;i<grams;i++){
-        act_hash_word[i]=malloc(sizeof(char)*50);
+
+    while (akt_dl < docelowa_dlugosc){
+
+        fprintf(out_file,"%s ",klucz[grams-1]);
+        akt_hash = hash_val(klucz,grams);
+       printf("Akt_hash : %d ",akt_hash);
+        printf("\"%s\" \"%s\" \"%s\" \n",klucz[0],klucz[1],klucz[2]);
+        for( i=1 ; i < grams ; i++ ){
+            klucz[i-1] = klucz[i];}
+        klucz[grams-1] = get_word_random(tab,akt_hash);
+
+        akt_dl++;
     }
 
-
-    srand(time(NULL));
-
-    while(1){
-    //printf("a");              //losujemy początkowy hash :D
-    hash=rand()%hash_size;
-    if(tab[hash]->size!=0){break;}
-    srand(hash);
-    }
-
-srand(time(NULL));
-printf("Wybrano początkowy hash jako %d, mozliwosci tam jest %d\n",hash,tab[hash]->size);
-numerek=(rand()%tab[hash]->size)+1;
-word=get_word_by_id(tab[hash]->possible,numerek);
-
-printf("Wylosowane slowo :  %s , z numerka : %d \n", word, numerek);
-printf("Wylosowane slowo :  %s , z numerka : %d \n", get_word_by_id(tab[hash]->possible,numerek), numerek);
-
-
-    FILE *outfile=fopen(out,"w");
-
-
-/*
-    while(act_size<dlugosc){
-
-//        word=get_word_by_id();
-  //      fprintf(outfile,"%s ",)
-
-    word=get_word_by_id(tab[hash]->possible,(rand()%tab[hash]->size)+1);
-
-
-//    hash=hash_val(act_hash_word,grams);
-
-    fprintf(outfile,"%d to jest sajz!\n",act_size);
-    act_size++;
-    }
-*/
-    fclose(outfile);
-    printf("Wygenerowalismy!\n");
-
+    fclose(out_file);
 }
+

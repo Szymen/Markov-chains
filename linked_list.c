@@ -7,10 +7,8 @@
 
 
 void list_push(char *data,node* first){
-//    printf("List_push!\n");
     while(first->next!=NULL){  // przewijamy do ostatniego
 		first=first->next;
-//        printf("a");
 		}
     first->next=malloc(sizeof(node)); // tworzymy nowy wezel
 
@@ -20,7 +18,15 @@ void list_push(char *data,node* first){
 		fclose(err);
 		return ; // konczymy dzialanie funkcji
     };
-    if(first->word==NULL){first->word=data;}
-    else {first->next->word=data;}
+
+    if(first->word==NULL){
+        first->word=malloc(sizeof(char)*50);
+        strcpy(first->word,data);
+        //first->word=data;
+        }
+    else {//first->next->word=data;
+        first->next->word=malloc(sizeof(char)*50);
+        strcpy(first->next->word,data);
+    }
 //    printf("Koniec List_pusha\n");
 }
