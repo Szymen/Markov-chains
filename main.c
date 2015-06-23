@@ -20,6 +20,7 @@ int main(int argc, char* argv[]) // stopien n-gramu , nazwa pliku wejsciowego, n
     assoc_initialize(tab,TAB_SIZE);
     process_text(nazwa_wejscia,tab,GRAMS);
     generate_text(nazwa_wyjscia,tab,GRAMS,dlugosc_wyjscia);
+    printf("Zrobione!\n");
     return 0;
 }
 

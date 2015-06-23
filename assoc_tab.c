@@ -7,7 +7,6 @@
 
 void assoc_push(assoc_tab* where, char *word){
 
-//    printf("W assoc_pushu dorzucono : %s\n",word);
     if(where->possible==NULL){where->possible=malloc(sizeof(node));}
 	where->size++;
 	list_push(word,where->possible);
@@ -31,16 +30,8 @@ char *get_word_random(assoc_tab *tab[],int hash){
     unsigned int wyrandowany = 0;
     srand(hash*time(NULL));
     wyrandowany = rand() % tab[hash]->size;
-//    printf("Wylosowano indeks %d size to : %d\n",wyrandowany,tab[hash]->size);
-    /*printf("Chcesz otrzymac z hasha : %d\n",hash);
-    printf("Size w funkcji : %d\nNastepniki w funkcji : ",tab[hash]->size);*/
     node *pom = malloc (sizeof (node));
     pom = tab[hash]->possible;
-    //while(pom){
-        //printf("%s ", pom->word);
-      //  pom=pom->next;
-    //}
-    //printf("\nWyrandowany indeks to : %d\n",wyrandowany);
     pom = tab[hash]->possible;
     while(wyrandowany--){
         pom = pom->next;
@@ -65,7 +56,6 @@ void make_trans_from_file(char* out_file, assoc_tab *where[]){
         fscanf(in,"%d",&size);
         while(size--){
             fscanf(in,"%s ",tmp);
-//            printf("Dodaje : %s\n",tmp);
             assoc_push(where[i],tmp);
         }
     }

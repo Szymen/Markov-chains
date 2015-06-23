@@ -22,8 +22,6 @@ void process_text(char* in_name,assoc_tab* tab[],int grams){
     while(fscanf(in,"%s",tmp[grams])!=EOF)
     {
             assoc_push(tab[hash_val(tmp,grams)],tmp[grams]); /*wrzucanie do tablicy przejsc */
-            //printf("Wrzucono slowo : %s pod indeks : %d\n",tmp[grams],hash_val(tmp,grams));
-
             for(i=1;i<=grams;i++){ strcpy(tmp[i-1],tmp[i]); } // przesuwanie slow, robienie miejsce na kolejne
     }
 }
@@ -47,8 +45,6 @@ void generate_text(char* out, assoc_tab* tab[],int grams,int docelowa_dlugosc){
 
         fprintf(out_file,"%s ",klucz[grams-1]);
         akt_hash = hash_val(klucz,grams);
-       printf("Akt_hash : %d ",akt_hash);
-        printf("\"%s\" \"%s\" \"%s\" \n",klucz[0],klucz[1],klucz[2]);
         for( i=1 ; i < grams ; i++ ){
             klucz[i-1] = klucz[i];}
         klucz[grams-1] = get_word_random(tab,akt_hash);

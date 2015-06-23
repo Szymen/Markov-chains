@@ -22,11 +22,10 @@ void list_push(char *data,node* first){
     if(first->word==NULL){
         first->word=malloc(sizeof(char)*50);
         strcpy(first->word,data);
-        //first->word=data;
         }
-    else {//first->next->word=data;
+    else {
         first->next->word=malloc(sizeof(char)*50);
         strcpy(first->next->word,data);
     }
-//    printf("Koniec List_pusha\n");
+
 }
