@@ -31,6 +31,7 @@ char *get_word_random(assoc_tab *tab[],int hash){
     unsigned int wyrandowany = 0;
     srand(hash*time(NULL));
     wyrandowany = rand() % tab[hash]->size;
+//    printf("Wylosowano indeks %d size to : %d\n",wyrandowany,tab[hash]->size);
     /*printf("Chcesz otrzymac z hasha : %d\n",hash);
     printf("Size w funkcji : %d\nNastepniki w funkcji : ",tab[hash]->size);*/
     node *pom = malloc (sizeof (node));
@@ -44,7 +45,6 @@ char *get_word_random(assoc_tab *tab[],int hash){
     while(wyrandowany--){
         pom = pom->next;
     }
-
     return pom->word;
 
 }
